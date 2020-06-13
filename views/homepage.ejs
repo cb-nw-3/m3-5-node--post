@@ -1,0 +1,22 @@
+<%- include('partials/header') %>
+
+<div class="container">
+    <form action="/data" method="post">
+
+        <input type="text" name="newitem">
+
+        <button>Submit</button>
+
+    </form>
+
+    <ul>
+        <% data.forEach( item => { %>
+
+        <li><%= item %></li>
+
+        <% }) %>
+
+    </ul>
+</div>
+
+<%- include('partials/footer') %>
