@@ -4,6 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const { handleToDos, handleData} = require('./handlers');
+const { stock, customers} = require('./data/promo');
 
 const PORT = process.env.PORT || 8000;
 
