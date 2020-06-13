@@ -3,8 +3,10 @@
     <input type="text" name="item" placeholder="Item Description" />
     <button type="submit">Submit</button>
   </form>
+  <% itemsList.forEach(item => {%>
   <div class="item">
     <input type="checkbox" />
-    <p>This is an inbox layout.</p>
+    <p><%=item%></p>
   </div>
+  <%})%>
 </div>

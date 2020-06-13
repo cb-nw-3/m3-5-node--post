@@ -1,5 +1,5 @@
 "use strict";
-
+const itemsList = [];
 const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
@@ -7,11 +7,13 @@ const morgan = require("morgan");
 const PORT = process.env.PORT || 8000;
 
 const handleToDos = (req, res) => {
-  res.status(200).render("pages/todos");
+  res.status(200).render("pages/todos", { itemsList });
 };
 
 const handleData = (req, res) => {
-  console.log(req.body);
+  const { item } = req.body;
+  itemsList.push(item);
+  res.redirect("/todos");
 };
 
 express()
