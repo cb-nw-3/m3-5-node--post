@@ -1,0 +1,20 @@
+<%- include('../partials/header.ejs') %>
+<body>
+  <div class="todo__container">
+    <form method="POST" action="/data">
+      <input class="todo__input" type="text" id="todo" name="item" value="" />
+      <br /><br />
+
+      <input class="todo__button" type="submit" value="Add" />
+    </form>
+
+    <div class="list-of-items__wrapper">
+      <ul>
+        <% if(items) { %> <% items.forEach(item => { %>
+        <li class="item"><%- item %></li>
+        <% }) %> <% } %>
+      </ul>
+    </div>
+  </div>
+</body>
+<%- include('../partials/footer.ejs') %>
