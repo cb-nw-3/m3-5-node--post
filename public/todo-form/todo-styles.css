@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins|Rubik&display=swap');
+
+/* CSS RESET */
+html,
+body,
+ul,
+li,
+a,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-width: 320px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.centered-container {
+  background-color: #f6f7fc;
+  box-shadow: 0 60px 120px rgba(71, 69, 123, 0.24),
+    0 15px 35px rgba(71, 69, 123, 0.24);
+  width: 400px;
+  height: 800px;
+}
+.order-image {
+  background: url(./assets/question.jpg) no-repeat center;
+  background-size: cover;
+  height: 190px;
+  width: 100%;
+  overflow: hidden;
+}
+
+form {
+  padding: 0 20px;
+}
+
+.form-content {
+  margin: 0 16px 0;
+  padding-top: 34px;
+}
+h1 {
+  color: #b1bbc7;
+  font-family: 'Rubik', Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+h2 {
+  color: #373352;
+  font-family: 'Rubik', Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  margin: 16px 0 20px;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.form-group.radio {
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+
+.form-group .form-item {
+  flex: 1 0 auto;
+  width: 48%;
+}
+
+.form-group .form-item:first-child {
+  margin-right: 6px;
+}
+.form-item {
+  margin-bottom: 6px;
+  width: 100%;
+  position: relative;
+}
+
+
+
+.submit-button {
+  position: relative;
+  background: #9e02b3;
+  border-color: transparent;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 16px auto;
+  height: 42px;
+  width: 90%;
+}
+
