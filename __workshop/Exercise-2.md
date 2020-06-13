@@ -17,6 +17,7 @@ To be clear, **you don't need to edit any of the code in `public/order-form/scri
    - whose address matches an address already in our database. Use only the street number and name for this.
 2. Validate that delivery address is within Canada. We only ship to Canada!
 3. Validate that the item selected is actually in stock.
+4. Validate that the person provided a complete address (all fields required).
 
 If any of these validations fail, return an error as a response.
 
@@ -48,7 +49,7 @@ If there is an error, you should change the `status`, as well as provide the err
 
 ## Details
 
-Take a look at the `promo.js` in the `data` folder. This is your _database_. It containd current stock levels as well as past customers... Business isn't exactly booming.
+Take a look at the `promo.js` in the `data` folder. This is your _database_. It contains current stock levels as well as past customers... Business isn't exactly booming.
 
 You will need to import this data wherever you need to use it. At the top of the file you can require them with
 
@@ -68,7 +69,7 @@ If the order is successfully placed, the front-end will redirect the user to `/o
 
 Create a new file at `/public/order-confirmed.html`. There is no provided design for this page; it is sufficient to show a no-frills confirmation message.
 
-## Stretch goal
+## Stretch goal 1
 
 Instead of showing a "static" order-confirmed page, render a template that includes the order information. For example:
 
@@ -80,3 +81,10 @@ To accomplish this, you'll need:
 
 - A new GET endpoint for `/order-confirmed`
 - A new template with variables for the dynamic content.
+
+## Stretch goal 2
+
+Update the "database" when a person signs up:
+
+- Adding customer to `customers` array
+- Reducing stock for selected item
