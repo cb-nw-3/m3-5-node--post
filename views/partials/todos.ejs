@@ -1,6 +1,6 @@
 <div class="inbox">
   <form method="POST" action="/data" id="listElement">
-    <input type="text" name="item" placeholder="Item Description" />
+    <input type="text" name="item" placeholder="Item Description" required/>
     <button type="submit">Submit</button>
   </form>
   <% itemsList.forEach(item => {%>
