@@ -26,5 +26,9 @@ express()
   // endpoints
   .get("/", handleToDos)
   .post('/data', handleData)
+  .post('/order', (req,res) => {
+    console.log(req.body);
+    res.render('/order-confirmed');
+  })
   .get("*", (req, res) => res.send("Dang. 404."))
   .listen(PORT, () => console.log(`Listening on port ${PORT}`));
