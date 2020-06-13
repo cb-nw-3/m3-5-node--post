@@ -64,52 +64,71 @@ express()
   .post('/order', (req, res) => {
     let orderData = req.body;
 
-    // setting up a bunch of booleans for future readability in logic checking
+    // initialize default orderData.status for DRYness reasons
 
-    let newUser = false;
-    let canadaPresence = false;
-    let inStock = false;
-    let fullAddress = false;
+    orderData.status = "error";
 
     // newUser check
 
+    let newUser = true;
     let providedUser = orderData.givenName + orderData.surname;
+    let providedAddy = orderData.address;
 
     // this seems inefficient, but I don't actually care right now
     // in the future I'll use a database, which ought to be slightly better
 
     customers.forEach(customer => {
       let fullName = customer.givenName + customer.surname;
-      if (providedUser != fullName) {
-        newUser = true;
+      let fullAddress = customer.address;
+
+      if (providedUser === fullName || providedAddy === fullAddress) {
+        newUser = false;
       }
+
     });
+
+    // we can actually refactor this to be slightly cleaner
+    // instead of using booleans, we can just use the status
+    // but let's work out the logic first, and then clean up after
+
+    if (newUser === false) {
+      orderData.error = "repeat-customer";
+      res.send(JSON.stringify(orderData));
+    }
 
     // Canada presence check
 
-    if (orderData.country.toLowerCase() === 'canada') {
-      canadaPresence = true;
+    if (orderData.country.toLowerCase() != 'canada') {
+      orderData.error = "undeliverable";
+      res.send(JSON.stringify(orderData));
     }
 
     // stock check
 
     if (orderData.order === 'shirt') {
-      if (stock['shirt'][orderData.size] != 0) {
-        inStock = true;
+      if (Number(stock['shirt'][orderData.size]) === 0) {
+        console.log('nope');
+        orderData.error = "unavailable";
+        res.send(JSON.stringify(orderData));
       }
     } else {
-      if (stock[orderData.order] != 0) {
-        inStock = true;
+      if (Number(stock[orderData.order]) === 0) {
+        orderData.error = "unavailable";
+        res.send(JSON.stringify(orderData));
       }
     }
 
     // validate all address fields
 
-    if (orderData.address != '' && orderData.city != '' && orderData.province != '' && orderData.country != '') {
-      fullAddress = true;
+    if (orderData.address === '' || orderData.city === '' || orderData.province === '' || orderData.country === '') {
+      orderData.error = "missing-data";
+      res.send(JSON.stringify(orderData));
     }
 
-    // check all things
+    // if nothing else went wrong...
+
+    orderData.status = "success";
+    res.send(JSON.stringify(orderData));
 
   })
 
