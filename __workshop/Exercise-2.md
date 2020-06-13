@@ -53,7 +53,7 @@ Take a look at the `promo.js` in the `data` folder. This is your _database_. It 
 You will need to import this data wherever you need to use it. At the top of the file you can require them with
 
 ```js
-const { stock, customers } = require('<PATH_TO_FILE>');
+const { stock, customers } = require("<PATH_TO_FILE>");
 ```
 
 ### Endpoint details
@@ -68,7 +68,7 @@ If the order is successfully placed, the front-end will redirect the user to `/o
 
 Create a new file at `/public/order-confirmed.html`. There is no provided design for this page; it is sufficient to show a no-frills confirmation message.
 
-## Stretch goal
+## Stretch goal 1
 
 Instead of showing a "static" order-confirmed page, render a template that includes the order information. For example:
 
@@ -80,3 +80,10 @@ To accomplish this, you'll need:
 
 - A new GET endpoint for `/order-confirmed`
 - A new template with variables for the dynamic content.
+
+## Stretch goal 2
+
+Update the "database" when a person signs up:
+
+- Adding customer to `customers` array
+- Reducing stock for selected item
