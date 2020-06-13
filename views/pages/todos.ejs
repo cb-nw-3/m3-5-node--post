@@ -1,0 +1,10 @@
+<%- include('../partials/header') %> <%- include('../partials/inputForm') %>
+
+<ul>
+  Todo List <% items.forEach(item =>{ %>
+  <li><%- item %></li>
+
+  <% })%>
+</ul>
+
+<%- include('../partials/footer') %>
