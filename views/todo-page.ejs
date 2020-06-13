@@ -7,16 +7,16 @@
     <div>
       <h1>My To Do List</h1>
     </div>
-    <form>
+    <form method="POST" action="/data">
       <label>Enter an item</label>
-      <input type="text" />
+      <input name="item" type="text" />
       <button type="submit">Submit</button>
     </form>
     <div>
       <ul>
-        <li>Stuff 1</li>
-        <li>Stuff 2</li>
-        <li>Stuff 3</li>
+        <% items.forEach(item => { %>
+        <li><%= item %></li>
+        <% }) %>
       </ul>
     </div>
   </body>
