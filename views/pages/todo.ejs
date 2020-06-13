@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<head>
+  <title>To Do List</title>
+</head>
+<body>
+  <form method="POST" action="/data">
+    <label for="item">To Do item:</label>
+    <input type="text" name="item" placeholder="Item Description" />
+    <button type="submit">Submit</button>
+  </form>
+  <ul>
+    <% items.forEach((item) =>{ %>
+    <li><%= item %></li>
+    <% }) %>
+  </ul>
+</body>
