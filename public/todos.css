@@ -30,8 +30,10 @@ form {
 }
 
 .todo__input {
+  height: 36px;
   width: 400px;
   border: none;
+  border-bottom: 1px solid gainsboro;
 }
 
 .todo__button {
@@ -44,21 +46,19 @@ form {
 }
 
 .list-of-items__wrapper {
-  /* border: 1px solid blue; */
-  height: 500px;
-  width: 506px;
+  width: 404px;
 }
 
 ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
-  box-shadow: 2px 2px 16px -5px rgba(0, 0, 0, 0.75);
+  border-radius: 5px;
 }
 
 .item {
-  padding: 10px;
+  padding: 10px 10px 10px 20px;
   font-style: italic;
   background-color: #fff;
-  border-bottom: gainsboro;
+  border-bottom: 1px solid gainsboro;
 }
