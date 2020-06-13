@@ -8,13 +8,19 @@ const handleHomePage = (req, res) => {
 
 //handles form data via .post() and redirects the to-do page with updated items
 const handleData = (req, res) => {
+  //create variable to hold value of input text from the form
   let { item } = req.body;
   console.log(item);
+
+  //push the value into the items array
   items.push(item);
   console.log("the current items are:", items);
+
+  //redirect to the todos endpoint to re-render the page with new items
   res.status(200).redirect("/todos");
 };
 
+//export all handlers
 module.exports = {
   handleHomePage: handleHomePage,
   handleData: handleData,
