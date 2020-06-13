@@ -31,10 +31,11 @@ body {
 }
 .order-image {
   background: url(./assets/question.jpg) no-repeat center;
-  background-size: cover;
+  background-size: contain;
   height: 190px;
   width: 100%;
   overflow: hidden;
+  margin: 40px auto;
 }
 
 form {

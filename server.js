@@ -1,20 +1,12 @@
 "use strict";
 const itemsList = [];
 const express = require("express");
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
 const morgan = require("morgan");
+const { handleToDos, handleData, handleOrder, } = require("./handlers");
 
 const PORT = process.env.PORT || 8000;
 
-const handleToDos = (req, res) => {
-  res.status(200).render("pages/todos", { itemsList });
-};
-
-const handleData = (req, res) => {
-  const { item } = req.body;
-  itemsList.push(item);
-  res.redirect("/todos");
-};
 
 express()
   .use(function (req, res, next) {
@@ -35,5 +27,6 @@ express()
 
   .get("/todos", handleToDos)
   .post("/data", handleData)
+  .post("/order", handleOrder)
   .get("*", (req, res) => res.send("Dang. 404."))
   .listen(PORT, () => console.log(`Listening on port ${PORT}`));
