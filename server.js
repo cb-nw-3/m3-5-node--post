@@ -7,7 +7,7 @@ const morgan = require("morgan");
 const PORT = process.env.PORT || 8000;
 
 let items = [];
-let { stock, customers } = require("./data/promo");
+let { validateData, updateDatabase } = require("./serverFunctions");
 let orderData = {};
 
 function handleOrderSubmit(req, res) {
@@ -16,9 +16,12 @@ function handleOrderSubmit(req, res) {
   //check errors
   if (validateData(orderData).status === "error") {
     res.send({ status: "error", error: `${validateData(orderData).error}` });
+  } else {
+    // update database
+    updateDatabase(orderData);
+    //resolve success
+    res.status(200).send({ status: "success" });
   }
-
-  res.status(200).send({ status: "success" });
 }
 
 express()
@@ -52,57 +55,3 @@ express()
 
   .get("*", (req, res) => res.send("Dang. 404."))
   .listen(PORT, () => console.log(`Listening on port ${PORT}`));
-
-function validateData(data) {
-  const {
-    order,
-    size,
-    givenName,
-    surname,
-    email,
-    address,
-    city,
-    province,
-    postcode,
-    country,
-  } = data;
-
-  if (order === "undefined") {
-    return { status: "error", error: "unavailable" };
-  }
-  //deliverability check
-  if (country.toLowerCase() !== "canada") {
-    return { status: "error", error: "undeliverable" };
-  }
-  console.log("country ok ");
-  //repeat customer check
-  if (
-    customers.find(
-      (customer) => customer.address.toLowerCase() === address.toLowerCase()
-    )
-  ) {
-    return { status: "error", error: "repeat-customer" };
-  }
-  console.log("address unique ok ");
-  //repeat customer check
-  if (
-    customers.find(
-      (customer) => customer.givenName.toLowerCase() === givenName.toLowerCase()
-    ) &&
-    customers.find(
-      (customer) => customer.surname.toLowerCase() === surname.toLowerCase()
-    )
-  ) {
-    return { status: "error", error: "repeat-customer" };
-  }
-  console.log("name unique ok ");
-  //stock check
-  if (order === "shirt" && stock[order][size] <= 0) {
-    return { status: "error", error: "unavailable" };
-  } else if (stock[order] <= 0) {
-    return { status: "error", error: "unavailable" };
-  }
-  console.log("stock ok and all ok");
-
-  return { status: "success" };
-}
