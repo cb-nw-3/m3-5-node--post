@@ -22,11 +22,7 @@ const handleOrder = (req, res) => {
   if (formOk) {
     orderValidation(form);
   }
-  if (response.status === "error") {
-    res.send("Dang. error");
-  } else{
-    res.send("Order confirmed");
-  }
+    res.json(response)
 };
 
 function orderValidation(form) {

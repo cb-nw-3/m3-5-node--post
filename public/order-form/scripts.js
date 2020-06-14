@@ -39,7 +39,7 @@ const updateForm = () => {
 const handleToggleErrorMessage = (errorStatus) => {};
 
 const handleSubmit = (event) => {
-  // event.preventDefault();
+  event.preventDefault();
   submitButton.disabled = true;
 
   const data = {
@@ -65,6 +65,7 @@ const handleSubmit = (event) => {
   })
     .then((res) => res.json())
     .then((data) => {
+      console.log(data);
       const { status, error } = data;
       if (status === 'success') {
         window.location.href = '/order-confirmed';
