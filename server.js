@@ -1,5 +1,5 @@
 "use strict";
-const itemsList = [];
+
 const express = require("express");
 // const bodyParser = require("body-parser");
 const morgan = require("morgan");

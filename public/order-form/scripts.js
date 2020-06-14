@@ -39,7 +39,7 @@ const updateForm = () => {
 const handleToggleErrorMessage = (errorStatus) => {};
 
 const handleSubmit = (event) => {
-  event.preventDefault();
+  // event.preventDefault();
   submitButton.disabled = true;
 
   const data = {
