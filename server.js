@@ -28,7 +28,7 @@ express()
   .post('/data', handleData)
   .post('/order', (req,res) => {
     console.log(req.body);
-    res.render('/order-confirmed');
+    res.render('../order-confirmed', { data: req.body});
   })
   .get("*", (req, res) => res.send("Dang. 404."))
   .listen(PORT, () => console.log(`Listening on port ${PORT}`));
