@@ -27,6 +27,7 @@ express()
   // endpoints
   .get("/", handleToDos)
   .post('/data', handleData)
+  .get('/order-confirmed', (req,res) => res.send('success'))
   .post('/order', (req,res) => {
     if (error === 'unavailable') {
       res.send({ status: 'error', error: unavailable});
@@ -40,8 +41,7 @@ express()
     if (error === 'missing-data') {
       res.send({ status: 'error', error: 'missing-data'})
     }
-    res.send({status: 'success'});
-
+    res.render('/order-confirmed', (req, res) => res.send({ status: 'success'}));
     })
   .get("*", (req, res) => res.send("Dang. 404."))
   .listen(PORT, () => console.log(`Listening on port ${PORT}`));
