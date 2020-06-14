@@ -4,6 +4,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
+//empty array for the todo list
+const items = [];
+
 const PORT = process.env.PORT || 8000;
 
 express()
@@ -21,7 +24,14 @@ express()
   .use(express.urlencoded({ extended: false }))
   .set('view engine', 'ejs')
 
+
   // endpoints
+  .get('/todos', (req, res) => res.render('./pages/todos', { items: items}))
+  .post('/data', (req, res) => {
+    const { item } = req.body;
+    items.push(item);
+    res.redirect('/todos');
+  })
 
   .get('*', (req, res) => res.send('Dang. 404.'))
   .listen(PORT, () => console.log(`Listening on port ${PORT}`));
