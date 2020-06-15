@@ -32,12 +32,6 @@ function validateData(data) {
   ) {
     return { status: "error", error: "missing-data" };
   }
-  if (givenName === "undefined" || surname === undefined) {
-    return { status: "error", error: "missing-data" };
-  }
-  if (order === "undefined") {
-    return { status: "error", error: "missing-data" };
-  }
 
   //deliverability check
   if (country.toLowerCase() !== "canada") {
