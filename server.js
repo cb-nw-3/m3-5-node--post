@@ -21,7 +21,7 @@ const addItem = (req, res) => {
 
   let newItem = req.body.newitem;
   data.push(newItem);
-  res.redirect('/');
+  res.redirect('/todos');
 }
 
 const handleOrderConfirm = (req, res) => {

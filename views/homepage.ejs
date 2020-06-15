@@ -1,22 +1,38 @@
 <%- include('partials/header') %>
 
 <div class="container">
-    <form action="/data" method="post">
 
-        <input type="text" name="newitem">
+    <div class="formBox">
 
-        <button>Submit</button>
+        <form action="/data" method="post">
 
-    </form>
 
-    <ul>
-        <% data.forEach( item => { %>
 
-        <li><%= item %></li>
+            <input type="text" name="newitem">
 
-        <% }) %>
+            <button>Submit</button>
 
-    </ul>
+
+
+        </form>
+
+    </div>
+
+    <div class="todoListBox">
+
+        <h2>Things to Do</h2>
+
+        <ul>
+            <% data.forEach( item => { %>
+
+            <li><%= item %></li>
+
+            <% }) %>
+
+        </ul>
+
+    </div>
+
 </div>
 
 <%- include('partials/footer') %>
