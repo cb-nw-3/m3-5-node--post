@@ -2,11 +2,13 @@
 
 const itemsList = [];
 const { stock, customers } = require('./data/promo.js');
+const { checklist } = require('./data/checklist.js');
 const nodemon = require('nodemon');
 const response = {
   status: 'success',
 };
 
+//Handlers Exercise #2
 const handleToDos = (req, res) => {
   res.status(200).render('pages/todos', { itemsList });
 };
@@ -16,6 +18,16 @@ const handleData = (req, res) => {
   itemsList.push(item);
   res.redirect('/todos');
 };
+
+const handleCheck = (req, res) => {
+  console.log(checklist);
+  console.log('List', checklist[0].element);
+  console.log('body', req.body);
+  checklist[0].element = req.body;
+  console.log(checklist[0]);
+};
+
+//Handlers Exercise #2
 
 const handleOrder = (req, res) => {
   response.status = 'success';
@@ -123,4 +135,5 @@ module.exports = {
   handleToDos,
   handleData,
   handleOrder,
+  handleCheck,
 };

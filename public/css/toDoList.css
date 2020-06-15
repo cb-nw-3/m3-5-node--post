@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
 
 body {
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
   background-color: whitesmoke;
   color: black;
   margin: 0 auto;
@@ -9,7 +9,7 @@ body {
   justify-content: center;
 }
 
-.wrapper{
+.wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,11 +20,10 @@ body {
 }
 
 form {
-margin: 16px auto;
+  margin: 16px auto;
 }
 
-
-.item{
+.item {
   display: flex;
   border-bottom: 1px solid silver;
   align-items: center;
@@ -36,7 +35,6 @@ margin: 16px auto;
 }
 
 h1 {
-
   font-size: 2.5rem;
   font-weight: bolder;
   text-shadow: 1px 0px 1px #cccccc, 0px 1px 1px #eeeeee, 2px 1px 1px #cccccc,
@@ -46,4 +44,7 @@ h1 {
     7px 6px 1px #cccccc;
 }
 
-
+input:checked + p {
+  background: #f9f9f9;
+  text-decoration: line-through;
+}

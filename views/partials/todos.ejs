@@ -1,7 +1,9 @@
 <div class="inbox">
   <form method="POST" action="/data" id="listElement">
-    <input type="text" name="item" placeholder="Item Description" required/>
+    <input type="text" name="item" placeholder="Item Description" required />
     <button type="submit">Submit</button>
+    <button type="button">Done</button>
+    <button type="button">Delete</button>
   </form>
   <% itemsList.forEach(item => {%>
   <div class="item">
@@ -10,3 +12,4 @@
   </div>
   <%})%>
 </div>
+<script src="js/todoScripts.js"></script>
