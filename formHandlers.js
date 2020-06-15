@@ -18,31 +18,44 @@ let {
 //validation
 
 const validationForm = (req, res) => {
-    let form = req.body
+    console.log('receiving form');
+    let form = req.body;
+
+    const {
+        order,
+        size,
+        givenName,
+        surname,
+        email,
+        address,
+        city,
+        province,
+        postcode,
+        country,
+    } = form;
     //if same user
-    if (data[givenName] === customers.givenName && data[surname] === customers.surname  ||
-        data[address] === customers.address ) {
-            res.send({status: 'error', error:'repeat-customer'});
-        }
-        else {
-            res.send({status:'success'});
+    if (customers.find( customer => customer.givenName === givenName && customer.surname === surname && 
+        customer.address === address)) {
+            res.send(JSON.stringify({status: 'error', error:'repeat-customer'}));
+            console.log('a');
+            return;
         }
     
     //if coming from canada
-    if (data[country].toLowerCase() !== 'canada') {
-        res.send({status:'error', error:'undeliverable'});
-    } else {
-        res.send({status:'success'});
+    if (country.toLowerCase() !== 'canada') {
+        res.send(JSON.stringify({status:'error', error:'undeliverable'}));
+        console.log('b');
+        return;
     }
 
     //if item not in stock
-    if (form === data.order && data.size) {
-        res.send({status:'error', error:'unavailable'});
-    } else {
-        res.send({status: 'success'});
+    if (stock[order][size] == 0 || stock[order] == 0 ) {
+        res.send(JSON.stringify({status:'error', error:'unavailable'}));
+        console.log('c');
+        return;
     }
 
-    res.send('success');
+    res.send(JSON.stringify({status:'success'}));
 };
 
 module.exports = {
