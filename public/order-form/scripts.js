@@ -1,6 +1,6 @@
 const orderItems = {
   undefined: { label: "Pick an item", imgUrl: "./assets/question.jpg" },
-  bottle: { label: "Bottle", imgUrl: "./assets/bottle.png" },
+  bottles: { label: "Bottle", imgUrl: "./assets/bottles.png" },
   shirt: { label: "T-shirt", imgUrl: "./assets/tshirt.png" },
   socks: { label: "Socks", imgUrl: "./assets/socks.jpg" },
 };
@@ -54,7 +54,6 @@ const handleSubmit = (event) => {
     postcode: postcode.value,
     country: country.value,
   };
-  console.log(data);
 
   fetch("/order", {
     method: "POST",

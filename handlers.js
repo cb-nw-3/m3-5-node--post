@@ -23,7 +23,22 @@ const handleOrder = (req, res) => {
     orderValidation(form);
   }
   if (response.status === "success") {
-    console.log(form.email);
+    const newCustomer = {
+      givenName: form.givenName,
+      surname: form.surname,
+      email: form.email,
+      address: form.address,
+      city: form.city,
+      province: form.province,
+      postcode: form.postcode,
+      country: form.country,
+    };
+    customers.push(newCustomer);
+    form.size == "undefined"
+      ? (stock[form.order] = (parseInt(stock[form.order]) - 1).toString())
+      : (stock.shirt[form.size] = (
+          parseInt(stock.shirt[form.size]) - 1
+        ).toString());
   }
   res.json(response);
 };

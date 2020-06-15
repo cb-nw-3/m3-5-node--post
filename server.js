@@ -1,7 +1,7 @@
 "use strict";
 
 const express = require("express");
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const { handleToDos, handleData, handleOrder } = require("./handlers");
 
@@ -19,7 +19,7 @@ express()
   .use(morgan("tiny"))
   .use(express.static("public"))
   .use(express.json())
-  .use(bodyParser.json())
+  // .use(bodyParser.json())
   .use(express.urlencoded({ extended: false }))
   .set("view engine", "ejs")
 
