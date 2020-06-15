@@ -20,11 +20,7 @@ const handleData = (req, res) => {
 };
 
 const handleCheck = (req, res) => {
-  console.log(checklist);
-  console.log('List', checklist[0].element);
-  console.log('body', req.body);
   checklist[0].element = req.body;
-  console.log(checklist[0]);
 };
 
 //Handlers Exercise #2
