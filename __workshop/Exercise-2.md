@@ -1,6 +1,6 @@
 # Exercise 2
 
-Take a look at the form that is available at [`/order-form`](http://localhost:8000/order-form). The form itself in in the `public` folder.
+Take a look at the form that is available at [`/order-form`](http://localhost:8000/order-form). The form itself is in the `public` folder.
 
 It is an order form for promotional products. Users need to fill out the complete form. All fields are required.
 

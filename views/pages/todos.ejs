@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+  <head>
+    <title>To Do List</title>
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <div class="list-container">
+      <form method="POST" action="/data">
+        <label for="task">Task</label>
+        <input type="text" name="task" required>
+        <button type="submit">Submit</button>
+      </form>
+      <ul>
+        <% items.forEach(element => { %>
+          <li><%= element %></li>
+        <% }) %>
+      </ul>
+    </div>
+    <script src=""></script>
+  </body>
+</html>
