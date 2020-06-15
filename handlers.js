@@ -1,28 +1,31 @@
+'use strict';
+
 const itemsList = [];
-const { stock, customers } = require("./data/promo.js");
-const nodemon = require("nodemon");
+const { stock, customers } = require('./data/promo.js');
+const nodemon = require('nodemon');
 const response = {
-  status: "success",
+  status: 'success',
 };
 
 const handleToDos = (req, res) => {
-  res.status(200).render("pages/todos", { itemsList });
+  res.status(200).render('pages/todos', { itemsList });
 };
 
 const handleData = (req, res) => {
+  const item = req.body.item;
   itemsList.push(item);
-  res.redirect("/todos");
+  res.redirect('/todos');
 };
 
 const handleOrder = (req, res) => {
-  response.status = "success";
+  response.status = 'success';
   delete response.error;
   const form = req.body;
   const formOk = formValidation(form);
   if (formOk) {
     orderValidation(form);
   }
-  if (response.status === "success") {
+  if (response.status === 'success') {
     const newCustomer = {
       givenName: form.givenName,
       surname: form.surname,
@@ -34,7 +37,7 @@ const handleOrder = (req, res) => {
       country: form.country,
     };
     customers.push(newCustomer);
-    form.size == "undefined"
+    form.size == 'undefined'
       ? (stock[form.order] = (parseInt(stock[form.order]) - 1).toString())
       : (stock.shirt[form.size] = (
           parseInt(stock.shirt[form.size]) - 1
@@ -47,9 +50,9 @@ function orderValidation(form) {
   status = true;
 
   // Validates country as CANADA
-  if (form.country.toUpperCase() != "CANADA") {
-    response.status = "error";
-    response.error = "undeliverable";
+  if (form.country.toUpperCase() != 'CANADA') {
+    response.status = 'error';
+    response.error = 'undeliverable';
   }
   // Validates that the user has not yet placed an order
   firstTimeValidation(form);
@@ -62,15 +65,15 @@ function orderValidation(form) {
 
 function formValidation(form) {
   const status = true;
-  if (form.order == "undefined") {
-    response.status = "error";
-    response.error = "missing-data";
+  if (form.order == 'undefined') {
+    response.status = 'error';
+    response.error = 'missing-data';
     return false;
   } else {
     for (key in form) {
-      if (form[key] == "") {
-        response.status = "error";
-        response.error = "missing-data";
+      if (form[key] == '') {
+        response.status = 'error';
+        response.error = 'missing-data';
         return false;
       }
     }
@@ -81,12 +84,12 @@ function formValidation(form) {
 function stockValidation(form) {
   if (form.size === undefined) {
     if (parseInt(stock[form.order]) <= 0) {
-      response.status = "error";
-      response.error = "unavailable";
+      response.status = 'error';
+      response.error = 'unavailable';
     }
   } else if (parseInt(stock[form.order][form.size]) <= 0) {
-    response.status = "error";
-    response.error = "unavailable";
+    response.status = 'error';
+    response.error = 'unavailable';
   }
 }
 
@@ -96,8 +99,8 @@ function firstTimeValidation(form) {
       customer.givenName.toUpperCase() === form.givenName.toUpperCase() &&
       customer.surname.toUpperCase() === form.surname.toUpperCase()
     ) {
-      response.status = "error";
-      response.error = "repeat-customer";
+      response.status = 'error';
+      response.error = 'repeat-customer';
     }
   });
 }
@@ -110,8 +113,8 @@ function addressValidation(form) {
       customer.city.toUpperCase() === form.city.toUpperCase() &&
       customer.postcode.toUpperCase() === form.postcode.toUpperCase()
     ) {
-      response.status = "error";
-      response.error = "repeat-customer";
+      response.status = 'error';
+      response.error = 'repeat-customer';
     }
   });
 }
