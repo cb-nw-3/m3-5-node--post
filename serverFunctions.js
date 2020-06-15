@@ -16,9 +16,29 @@ function validateData(data) {
 
   //console.log(data);
 
-  if (order === "undefined") {
-    return { status: "error", error: "unavailable" };
+  if (order === "shirt" && size === "undefined") {
+    return { status: "error", error: "missing-data" };
   }
+  if (
+    order === "undefined" ||
+    givenName === "undefined" ||
+    surname === "undefined" ||
+    email === "undefined" ||
+    address === "undefined" ||
+    city === "undefined" ||
+    province === "undefined" ||
+    postcode === "undefined" ||
+    country === "undefined"
+  ) {
+    return { status: "error", error: "missing-data" };
+  }
+  if (givenName === "undefined" || surname === undefined) {
+    return { status: "error", error: "missing-data" };
+  }
+  if (order === "undefined") {
+    return { status: "error", error: "missing-data" };
+  }
+
   //deliverability check
   if (country.toLowerCase() !== "canada") {
     return { status: "error", error: "undeliverable" };

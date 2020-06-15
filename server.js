@@ -14,8 +14,9 @@ function handleOrderSubmit(req, res) {
   orderData = req.body;
 
   //check errors
-  if (validateData(orderData).status === "error") {
-    res.send({ status: "error", error: `${validateData(orderData).error}` });
+  let orderResult = validateData(orderData);
+  if (orderResult.status === "error") {
+    res.send({ status: "error", error: `${orderResult.error}` });
   } else {
     // update database
     updateDatabase(orderData);
