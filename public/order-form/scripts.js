@@ -39,7 +39,7 @@ const updateForm = () => {
 const handleToggleErrorMessage = (errorStatus) => {};
 
 const handleSubmit = (event) => {
-  // event.preventDefault();
+  event.preventDefault();
   submitButton.disabled = true;
 
   const data = {
@@ -68,12 +68,11 @@ const handleSubmit = (event) => {
       console.log(data);
       const { status, error } = data;
       if (status === 'success') {
-        window.location.href = '../order-confirmed.html';
+        window.location.href = '/order-confirmed.html';
       } else if (error) {
         submitButton.disabled = false;
         errorMsg.style.display = 'flex';
         errorMsg.innerText = errorMessages[error];
-        errorMsg.style.position = "absolute";
       }
     });
 };
