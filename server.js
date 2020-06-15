@@ -6,7 +6,6 @@ const morgan = require("morgan");
 const { handleToDos, handleData} = require('./handlers');
 const { stock, customers} = require('./data/promo');
 const { validationForm } = require('./formHandlers');
-console.log(Object.values(stock.shirt.medium));
 
 
 const PORT = process.env.PORT || 8000;
