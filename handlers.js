@@ -22,7 +22,10 @@ const handleOrder = (req, res) => {
   if (formOk) {
     orderValidation(form);
   }
-    res.json(response)
+  if (response.status === "success") {
+    console.log(form.email);
+  }
+  res.json(response);
 };
 
 function orderValidation(form) {
