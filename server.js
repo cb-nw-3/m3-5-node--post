@@ -4,6 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const { stock, customers } = require("./data/promo");
+let user = {};
 
 const PORT = process.env.PORT || 8000;
 
@@ -32,6 +33,7 @@ function isPresentInDataBase(item) {
 const formValidation = (req, res) => {
   let { givenName, surname, address, country, order, size } = req.body;
   console.log(req.body);
+  user = req.body;
   if (
     (isPresentInDataBase(givenName) && isPresentInDataBase(surname)) ||
     isPresentInDataBase(address)
@@ -93,7 +95,7 @@ express()
 
   .post("/order", formValidation)
   .get("/order-confirmed", (req, res) => {
-    res.render("pages/order");
+    res.render("pages/order", { user: user });
   })
 
   .get("*", (req, res) => res.send("Dang. 404."))

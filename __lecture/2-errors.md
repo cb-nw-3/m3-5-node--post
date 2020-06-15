@@ -1,4 +1,4 @@
-# Errors
+<# Errors
 
 ---
 
@@ -19,8 +19,8 @@ We can write our own errors, for when things happen that we don't expect
 
 ```js
 function greetUser(name) {
-  if (typeof name === 'undefined') {
-    throw new Error('Please supply a name!');
+  if (typeof name === "undefined") {
+    throw new Error("Please supply a name!");
   }
 
   console.log(`hi ${name}!`);
@@ -63,7 +63,7 @@ try {
   riskyOperation3();
   riskyOperation4();
 } catch (err) {
-  console.error('An error has occured', err);
+  console.error("An error has occured", err);
   emailAdministrator();
 }
 ```
