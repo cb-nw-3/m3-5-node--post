@@ -1,0 +1,43 @@
+html body {
+  background-color: salmon;
+}
+
+.todo-title {
+  text-align: center;
+  border-bottom: 1px solid black;
+  margin-bottom: 20px;
+}
+
+.todo-form {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid black;
+  justify-content: center;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.todo-form > label,
+input,
+button {
+  margin: 10px;
+}
+
+.todo-ctn {
+  border: 4px solid black;
+  background-color: white;
+  width: 220px;
+  height: 500px;
+  margin: 0 auto;
+}
+
+.todo-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.todo-list > li {
+  padding: 20px;
+  border-bottom: 1px solid black;
+}
