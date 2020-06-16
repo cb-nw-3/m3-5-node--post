@@ -2,14 +2,14 @@
   <form method="POST" action="/data" id="listElement">
     <input type="text" name="item" placeholder="Item Description" required />
     <button type="submit">Submit</button>
-    <button type="button">Done</button>
-    <button type="button">Delete</button>
+    <button id="delete" type="button">Delete</button>
   </form>
-  <%console.log(itemsList)%>
-  <% itemsList.forEach(item => {%> 
+  <% itemsList.forEach(item => {%>
   <div class="item">
-    <input type="checkbox" />
-    <p><%=item%></p>
+    <input type="checkbox" <%if (item.checked) {%> 
+      <%="checked"%>
+    <%}%>/>
+    <p><%=item.text%></p>
   </div>
   <%})%>
 </div>

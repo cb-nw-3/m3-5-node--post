@@ -1,7 +1,7 @@
 const checklist = [
   {
     listName: 'Check List',
-    element: [],
+    list: [],
   },
 ];
 

@@ -1,26 +1,31 @@
-'use strict';
+"use strict";
 
-const itemsList = [];
-const { stock, customers } = require('./data/promo.js');
-const { checklist } = require('./data/checklist.js');
-const nodemon = require('nodemon');
+const { stock, customers } = require("./data/promo.js");
+const { checklist } = require("./data/checklist.js");
+const nodemon = require("nodemon");
+// const { resolveInclude } = require("ejs");
 const response = {
-  status: 'success',
+  status: "success",
 };
 
-//Handlers Exercise #2
+let itemsList = checklist[0].list;
+
+//Handlers Exercise #1
 const handleToDos = (req, res) => {
-  res.status(200).render('pages/todos', { itemsList });
+  res.status(200).render("pages/todos", { itemsList });
 };
 
 const handleData = (req, res) => {
-  const item = req.body.item;
+  const item = { text: req.body.item, checked: false };
   itemsList.push(item);
-  res.redirect('/todos');
+  res.redirect("/todos");
 };
 
-const handleCheck = (req, res) => {
-  checklist[0].element = req.body;
+const handleUpdate = (req, res) => {
+  itemsList = req.body;
+  console.log(itemsList);
+  // res.status(200).render("pages/todos", { itemsList });
+  res.redirect(301, "/todos");
 };
 
 //Handlers Exercise #2
@@ -131,5 +136,5 @@ module.exports = {
   handleToDos,
   handleData,
   handleOrder,
-  handleCheck,
+  handleUpdate,
 };
