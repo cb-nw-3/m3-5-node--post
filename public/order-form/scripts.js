@@ -45,7 +45,7 @@ const handleSubmit = (event) => {
 
   const data = {
     order: order.value,
-    size: size.value,
+    size: size.value || 0,
     givenName: givenName.value,
     surname: surname.value,
     email: email.value,
