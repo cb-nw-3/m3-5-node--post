@@ -33,7 +33,7 @@ const validationForm = (req, res) => {
         postcode,
         country,
     } = form;
-    console.log(order);
+    
     //if same user
     if (customers.find( customer => customer.givenName === givenName && customer.surname === surname || customer.address === address)) {
             res.json({status: 'error', error:'repeat-customer'});
@@ -55,12 +55,12 @@ const validationForm = (req, res) => {
         return;
     }
     // if all values are entered
-    if (!order) {
+    /*if (customers.find( customer => customer.order != 'shirt' || 'bottles' || 'socks')) {
         
-            res.send(JSON.stringify({status:'error', error:'missing-data'}));
+            res.json({status:'error', error:'missing-data'});
             console.log('d');
             return;
-        }
+        }*/
 
     res.send(JSON.stringify({status:'success'}));
 };
