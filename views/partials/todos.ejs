@@ -6,9 +6,9 @@
   </form>
   <% itemsList.forEach(item => {%>
   <div class="item">
-    <input type="checkbox" <%if (item.checked) {%> 
+    <input type="checkbox" <%if (item.checked) {%>
       <%="checked"%>
-    <%}%>/>
+      <%}%>/>
     <p><%=item.text%></p>
   </div>
   <%})%>
