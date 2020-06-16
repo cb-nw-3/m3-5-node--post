@@ -21,11 +21,11 @@ const handleData = (req, res) => {
   //redirect to the todos endpoint to re-render the page with new items
   res.status(200).redirect("/todos");
 };
-
+let completedForm = undefined;
 const handleForm = (req, res) => {
   //obtain the response data from the form
   console.log(req.body);
-  let completedForm = req.body;
+  completedForm = req.body;
 
   //this will handle stock validation for tshirts in various sizes
   if (completedForm.order === "shirt") {
@@ -84,7 +84,6 @@ const handleForm = (req, res) => {
     case "bottles":
       if (stock.bottles > 0) {
         completedForm.size = 1;
-        req.body.size = 1;
         stock.bottles--;
         console.log("your stock in socks is now", stock.bottles);
         break;
@@ -96,7 +95,6 @@ const handleForm = (req, res) => {
     case "socks":
       if (stock.socks > 0) {
         completedForm.size = 1;
-        req.body.size = 1;
         stock.socks--;
         console.log("your stock in socks is now", stock.socks);
         break;
@@ -138,7 +136,7 @@ const handleForm = (req, res) => {
 
   //if all fields in the form are not undefined then form has been filled
   //properly
-  if (!Object.values(completedForm).includes("undefined")) {
+  if (completedForm && !Object.values(completedForm).includes("undefined")) {
     console.log("Form is Completed!");
     res.send(JSON.stringify({ status: "success" }));
     console.log(completedForm);
@@ -162,9 +160,16 @@ const handleForm = (req, res) => {
 
 //this is part of the stretch goal to render dynamic info in the confirmation page
 const handleOrder = (req, res) => {
-  let completedForm = req.body;
+  // let completedForm = req.body;
+  if (!completedForm) {
+    return;
+  }
+  console.log(completedForm);
   console.log("handling the order now for: ", completedForm);
   res.render("order-confirmed", { data: completedForm });
+
+  //once the order has been handled, wipe the global var.
+  completedForm = undefined;
 };
 
 //export all handlers
