@@ -44,9 +44,9 @@ express()
 	})
 
 	.post("/order", (req, res) => {
-		console.log(req.body);
 		const { givenName } = req.body;
 		const { surname } = req.body;
+		const { order, size } = req.body;
 		const { country } = req.body;
 
 		// make if statements to check if there are errors
@@ -64,22 +64,32 @@ express()
 					error: "repeat-customer",
 				})
 			);
-		} else if (stock === "0") {
+		} else if (stock[order] === "0" || stock[order][size] === "0") {
 			res.send(
 				JSON.stringify({
 					status: "error",
-					error: "Item out of stock. :(",
+					error: "unavailable",
 				})
 			);
-		} else if (customers.find((customer) => customer.country !== "Canada")) {
+		} else if (customers.find(() => country !== "Canada")) {
 			res.send(
 				JSON.stringify({
 					status: "error",
-					error: "Outside of delivery zone. :(",
+					error: "undeliverable",
 				})
 			);
 		}
-		// Orders confirming when they shouldn't be ^^^ (stock, country)
+		// else if (Object.values(req.body).includes('undefined')) {
+
+		// 	res.send(
+		// 		JSON.stringify({
+		// 			status: "error",
+		// 			error: 'missing-data'
+		// 		})
+		// 	)
+		// }
+		// **TODO: ^^ else if always returns since size for bottles and socks is always undefined
+
 		res.send(
 			JSON.stringify({
 				status: "success",
