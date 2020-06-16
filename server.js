@@ -8,6 +8,7 @@ const {
   handleHomePage,
   handleData,
   handleForm,
+  handleOrder,
 } = require("./routes/routes.js");
 
 const PORT = process.env.PORT || 8000;
@@ -33,6 +34,7 @@ express()
   .post("/data", handleData)
 
   // ############### EXERCISE 2 #####################
+  .get("/order-confirmed", handleOrder)
   .post("/order", handleForm)
 
   .get("*", (req, res) => res.send("Dang. 404."))
