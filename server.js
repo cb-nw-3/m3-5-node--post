@@ -6,6 +6,7 @@ const morgan = require("morgan");
 
 const PORT = process.env.PORT || 8000;
 
+//Exercise 1
 //array of items in the todo list
 const items = [];
 
@@ -19,6 +20,9 @@ const todoData = (req, res) => {
 
     res.redirect('/todos');
 }
+
+//Exercise 2
+const { handleOrder } = require("./handlers");
 
 express()
     .use(function (req, res, next) {
@@ -36,8 +40,12 @@ express()
     .set("view engine", "ejs")
 
     // endpoints
+    //Exercise 1
     .get("/todos", homePage)
     .post("/data", todoData)
+
+    //Exercise 2
+    .post("/order", handleOrder)
 
     .get("*", (req, res) => res.send("Dang. 404."))
     .listen(PORT, () => console.log(`Listening on port ${PORT}`));

@@ -1,6 +1,6 @@
 const orderItems = {
   undefined: { label: 'Pick an item', imgUrl: './assets/question.jpg' },
-  bottle: { label: 'Bottle', imgUrl: './assets/bottle.png' },
+  bottles: { label: 'Bottles', imgUrl: './assets/bottle.png' },
   shirt: { label: 'T-shirt', imgUrl: './assets/tshirt.png' },
   socks: { label: 'Socks', imgUrl: './assets/socks.jpg' },
 };
@@ -36,7 +36,7 @@ const updateForm = () => {
   ).style.backgroundImage = `url(${orderItems[sel].imgUrl}`;
 };
 
-const handleToggleErrorMessage = (errorStatus) => {};
+const handleToggleErrorMessage = (errorStatus) => { };
 
 const handleSubmit = (event) => {
   event.preventDefault();
