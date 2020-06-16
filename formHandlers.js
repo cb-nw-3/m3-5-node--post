@@ -34,8 +34,7 @@ const validationForm = (req, res) => {
         country,
     } = form;
     //if same user
-    if (customers.find( customer => customer.givenName === givenName && customer.surname === surname &&
-        customer.address === address)) {
+    if (customers.find( customer => customer.givenName === givenName && customer.surname === surname || customer.address === address)) {
             res.send(JSON.stringify({status: 'error', error:'repeat-customer'}));
             console.log('a');
             return;
