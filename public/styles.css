@@ -18,6 +18,8 @@ ul {
 li {
     list-style-type: none;
     padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
 li:not(:first-child) {
@@ -27,6 +29,18 @@ li:not(:first-child) {
 
 li:last-child {
     padding-bottom: 0;
+}
+
+.todoItem:hover {
+    text-decoration: line-through;
+}
+
+.deleteItem {
+    margin-right: 10px;
+}
+
+.strike {
+    text-decoration: line-through;
 }
 
 .container {

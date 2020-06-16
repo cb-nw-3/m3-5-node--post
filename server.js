@@ -10,6 +10,8 @@ const data = [];
 
 const { stock, customers } = require('./data/promo');
 
+// ex 1 handlers
+
 const handleHomepage = (req, res) => {
   res.render('homepage', { data: data });
 }
@@ -20,9 +22,24 @@ const addItem = (req, res) => {
   // append to the existing list of items
 
   let newItem = req.body.newitem;
+
+  if (newItem === "") {
+    res.redirect('/todos');
+    return;
+  }
+
   data.push(newItem);
   res.redirect('/todos');
 }
+
+const deleteItem = (req, res) => {
+  let deleteItem = req.params.item;
+  let dataIdx = data.indexOf(deleteItem);
+  data.splice(dataIdx, 1);
+  res.redirect('/todos');
+}
+
+// ex 2 handlers
 
 const handleOrderConfirm = (req, res) => {
   res.send('Order confirmed!');
@@ -50,6 +67,8 @@ express()
   .get('/todos', handleHomepage)
 
   .post('/data', addItem)
+
+  .get('/clear/:item', deleteItem)
 
   // ex 2 endpoint
 

@@ -6,13 +6,9 @@
 
         <form action="/data" method="post">
 
-
-
             <input type="text" name="newitem">
 
             <button>Submit</button>
-
-
 
         </form>
 
@@ -23,9 +19,11 @@
         <h2>Things to Do</h2>
 
         <ul>
+
             <% data.forEach( item => { %>
 
-            <li><%= item %></li>
+            <li><span class="todoItem"><%= item %></span><span class="deleteItem"><a
+                        href="/clear/<%= item %>">delete</a></span></li>
 
             <% }) %>
 
