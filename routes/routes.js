@@ -81,7 +81,7 @@ const handleForm = (req, res) => {
 
   //this will cover the bottles and socks stock validation
   switch (completedForm.order) {
-    case "bottles":
+    case "bottle":
       if (stock.bottles > 0) {
         completedForm.size = 1;
         stock.bottles--;
