@@ -1,0 +1,44 @@
+<%- include('../partials/header') %>
+
+<main class="todo-body">
+  <h2>This is a Todo List</h2>
+  <%- include('../partials/inputForm') %>
+  <h4>
+    Here are some things you want to do in the future! You will probably not do
+    them.
+  </h4>
+
+  <ul class="todo-list">
+    <%items.forEach((item, index) =>{ %> <% if (item.done === true) {%>
+    <li class="todo-item done-item">
+      <%- item.name %>
+
+      <form method="POST" action="/deleteItem">
+        <button
+          class="done-button"
+          type="submit"
+          name="index"
+          value="<%-index%>"
+        >
+          Delete!
+        </button>
+      </form>
+    </li>
+    <% } else { %>
+    <li class="todo-item">
+      <%- item.name %>
+      <form method="POST" action="/doneItem">
+        <button
+          class="done-button"
+          type="submit"
+          name="itemName"
+          value="<%-item.name%>"
+        >
+          Done!
+        </button>
+      </form>
+    </li>
+    <%}}) %>
+  </ul>
+</main>
+<%- include('../partials/footer') %>
