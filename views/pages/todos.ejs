@@ -9,9 +9,9 @@
   </h4>
 
   <ul class="todo-list">
-    <%items.forEach((item, index) =>{ %>
-    <li class="todo-item">
-      <%- item %>
+    <%items.forEach((item, index) =>{ %> <% if (item.done === true) {%>
+    <li class="todo-item done-item">
+      <%- item.name %>
 
       <form method="POST" action="/deleteItem">
         <button
@@ -20,12 +20,25 @@
           name="index"
           value="<%-index%>"
         >
+          Delete!
+        </button>
+      </form>
+    </li>
+    <% } else { %>
+    <li class="todo-item">
+      <%- item.name %>
+      <form method="POST" action="/doneItem">
+        <button
+          class="done-button"
+          type="submit"
+          name="itemName"
+          value="<%-item.name%>"
+        >
           Done!
         </button>
       </form>
     </li>
-
-    <% })%>
+    <%}}) %>
   </ul>
 </main>
 <%- include('../partials/footer') %>

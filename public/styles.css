@@ -12,3 +12,7 @@
   padding: 10px 0px;
   border-bottom: 1px solid black;
 }
+
+.done-item {
+  text-decoration: line-through;
+}
