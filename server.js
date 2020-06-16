@@ -52,6 +52,13 @@ express()
     items.push(item);
     res.redirect("/todos");
   })
+
+  // I know i'm supposed to use .delete but the same code triggers a 404 when the method is delete (both in the html and here)
+  .post("/deleteItem", (req, res) => {
+    const { index } = req.body;
+    items.splice(index, 1);
+    res.redirect("/todos");
+  })
   .post("/order", handleOrderSubmit)
 
   .get("*", (req, res) => res.send("Dang. 404."))
