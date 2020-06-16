@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+
+<div class="container">
+
+    <div class="formBox">
+
+        <form action="/data" method="post">
+
+            <input type="text" name="newitem">
+
+            <button>Submit</button>
+
+        </form>
+
+    </div>
+
+    <div class="todoListBox">
+
+        <h2>Things to Do</h2>
+
+        <ul>
+
+            <% data.forEach( item => { %>
+
+            <li><span class="todoItem"><%= item %></span><span class="deleteItem"><a
+                        href="/clear/<%= item %>">delete</a></span></li>
+
+            <% }) %>
+
+        </ul>
+
+    </div>
+
+</div>
+
+<%- include('partials/footer') %>
