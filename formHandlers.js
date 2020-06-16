@@ -33,26 +33,34 @@ const validationForm = (req, res) => {
         postcode,
         country,
     } = form;
+    console.log(order);
     //if same user
     if (customers.find( customer => customer.givenName === givenName && customer.surname === surname || customer.address === address)) {
-            res.send(JSON.stringify({status: 'error', error:'repeat-customer'}));
+            res.json({status: 'error', error:'repeat-customer'});
             console.log('a');
             return;
         }
     
     //if coming from canada
     if (country.toLowerCase() !== 'canada') {
-        res.send(JSON.stringify({status:'error', error:'undeliverable'}));
+        res.json({status:'error', error:'undeliverable'});
         console.log('b');
         return;
     }
 
     //if item not in stock
     if (stock[order][size] == 0 || stock[order] == 0 ) {
-        res.send(JSON.stringify({status:'error', error:'unavailable'}));
+        res.json({status:'error', error:'unavailable'});
         console.log('c');
         return;
     }
+    // if all values are entered
+    if (!order) {
+        
+            res.send(JSON.stringify({status:'error', error:'missing-data'}));
+            console.log('d');
+            return;
+        }
 
     res.send(JSON.stringify({status:'success'}));
 };
