@@ -20,6 +20,13 @@ const handleData = (req, res) => {
   res.redirect("/todo");
 };
 
+const handleDelete = (req, res) => {
+  let item = req.params.item;
+  const index = items.indexOf(item);
+  items.splice(index, 1);
+  res.redirect("/todo");
+};
+
 function isPresentInDataBase(item) {
   let itemIsPresent = false;
   customers.forEach((object) => {
@@ -92,6 +99,7 @@ express()
   // endpoints
   .get("/todo", handleList)
   .post("/data", handleData)
+  .get("/delete/:item", handleDelete)
 
   .post("/order", formValidation)
   .get("/order-confirmed", (req, res) => {
