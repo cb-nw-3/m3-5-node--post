@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins|Rubik&display=swap');
+
+/* CSS RESET */
+html,
+body,
+ul,
+li,
+a,
+p {
+  margin: 0;
+  padding: 0;
+}
+.header-container {
+  background-color: #b118c8;
+  width: 100%;
+  text-align: center;
+
+}
+body {
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-width: 320px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.centered-container {
+  background-color: #f6f7fc;
+  box-shadow: 0 60px 120px rgba(71, 69, 123, 0.24),
+    0 15px 35px rgba(71, 69, 123, 0.24);
+  width: 400px;
+  height: 800px;
+}
+
+form {
+  padding: 0 20px;
+}
+.form-container {
+  background-color: #bbb5bd;
+  width: 100%;
+  padding-bottom: 10px;
+  text-align: center;
+}
+.form-container label {
+  display: block;
+}
+.item-list--todo{
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.submit-button {
+  position: relative;
+  background: #b100c8;
+  border-color: transparent;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 16px auto;
+  height: 42px;
+  width: 25%;
+}
+
+footer {
+  font-size: 14px;
+  text-align: center;
+}

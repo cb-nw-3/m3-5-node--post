@@ -1,0 +1,12 @@
+<%- include('../partials/header') %>
+<div class='form-container'>
+    <%- include('../partials/dataInput') %>
+</div>
+<div class='centered-container'>
+    <ul class='item-list'>
+        <% todos.forEach(todo => { %>
+            <li class='item-list--todo'><%= todo %></li>
+        <% }); %>
+    </ul>
+</div>
+<%- include('../partials/footer') %>

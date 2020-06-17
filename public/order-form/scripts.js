@@ -1,6 +1,6 @@
 const orderItems = {
   undefined: { label: 'Pick an item', imgUrl: './assets/question.jpg' },
-  bottle: { label: 'Bottle', imgUrl: './assets/bottle.png' },
+  bottles: { label: 'Bottle', imgUrl: './assets/bottle.png' },
   shirt: { label: 'T-shirt', imgUrl: './assets/tshirt.png' },
   socks: { label: 'Socks', imgUrl: './assets/socks.jpg' },
 };
@@ -67,6 +67,7 @@ const handleSubmit = (event) => {
     .then((res) => res.json())
     .then((data) => {
       const { status, error } = data;
+      console.log(status);
       if (status === 'success') {
         window.location.href = '/order-confirmed';
       } else if (error) {
