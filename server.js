@@ -7,6 +7,76 @@ const morgan = require('morgan');
 const PORT = process.env.PORT || 8000;
 
 const { renderTodoListPage, handleTODOFormData } = require('./todo.js');
+const { customers, stock } = require('./data/promo.js');
+
+
+function cleanString (word)
+{
+  let wordCleaned = word.trim();
+  wordCleaned = wordCleaned.charAt(0).toUpperCase() + wordCleaned.slice(1);
+  return wordCleaned
+}
+
+const handlePostOrder = (req, res, item) =>
+{
+   console.log(req.body)
+
+
+  let givenName = cleanString(req.body.givenName);
+
+  let surName = cleanString(req.body.surname);
+
+
+  let customersInArray = customers.filter( element =>  element.givenName === givenName && element.surname === surName );
+
+  if (customersInArray.length >= 1)
+  {
+      res.status(200).json({
+        "status": "error",
+        "error": "repeat-customer"
+      });
+  }
+
+
+  let country = cleanString(req.body.country);
+  
+  if (country != "Canada")
+  {
+    res.status(200).json({
+      "status": "error",
+      "error": "undeliverable"
+    });
+
+  }
+
+  let order = req.body.order;
+  let size = req.body.size;
+
+  if (order === "bottles" && Number(stock.bottles) > 0)
+  {
+    console.log ("we have bottles");
+
+  }
+  
+
+  let itemsLeftInStock = eval(stock.order);
+
+  console.log(itemsLeftInStock);
+
+    console.log ("should render success json object");
+    // res.status(200).json({
+    //   "status": "success"
+    // });
+
+
+
+  // console.log(customersInArray);
+
+}
+
+  //res.status(200).json({errorMessages});
+
+
 
 
  
@@ -30,10 +100,12 @@ express()
   .post('/data', handleTODOFormData)
   .get('/', renderTodoListPage)
   .get('*', (req, res) => res.send('Dang. 404.'))
-  .get('/order',  (req, res) => res.send('Hello.'))
+  .post('/order',  handlePostOrder)
+
+
+
 
   
   .listen(PORT, () => console.log(`Listening on port ${PORT}`));
-
 
 
