@@ -29,31 +29,14 @@ const handleDataToDoList = (req, res) => {
 
 const handleOrder = (req, res) => {
   let newCustomer = true;
-  let validItem = true;
-  let validAddress = true;
-
   order = req.body;
 
-  // check if new customer
+  // check if good order
   customers.forEach(element => {
+    // new customer
     if (element.givenName === order.givenName) {
       newCustomer = false;
-    } else if (element.country !== 'Canada' && element.country !== 'canada') {
-      validAddress = false;
-    } else if (order.order === 'shirt') {
-      if (stock[order.order][order.size] <= 0) {
-        validItem = false;
-      } else {
-        stock[order.order][order.size]--;
-      }
-      console.log(stock[order.order][order.size])
-    } else if (order.order === 'socks' || order.order === 'bottle') {
-      if (stock[order.order] <= 0) {
-        validItem = false;
-      } else {
-        stock[order.order]--;
-      }
-      console.log(stock[order.order])  
+    // shirt order
     } else {
       newCustomerObject =   {
         givenName: order.givenName,
@@ -65,8 +48,6 @@ const handleOrder = (req, res) => {
         postcode: order.postcode,
         country: order.country,
       }
-
-      customers.push(newCustomerObject);
     }
   });
 
@@ -77,18 +58,42 @@ const handleOrder = (req, res) => {
       error: "repeat-customer"
     }
     res.send(JSON.stringify(orderStatus))
-  } else if (!validAddress) {
+  } else if (req.body.country !== 'Canada' && req.body.country !== 'canada') {
     orderStatus = {
       status: "error",
       error: "undeliverable"
     }
     res.send(JSON.stringify(orderStatus))
-  } else if (!validItem) {
-    orderStatus = {
-      status: "error",
-      error: "unavailable"
+  } else if (req.body.order === 'shirt') {
+    if (stock[order.order][order.size] <= 0) {
+      orderStatus = {
+        status: "error",
+        error: "unavailable"
+      }
+      res.send(JSON.stringify(orderStatus))
+    } else {
+      stock[order.order][order.size]--;
+      orderStatus = {
+        status: 'success'
+      } 
+      customers.push(newCustomerObject)
+      res.send(JSON.stringify(orderStatus))
     }
-    res.send(JSON.stringify(orderStatus))
+  } else if (req.body.order === 'socks' || req.body.order === 'bottles') {
+    if (stock[order.order] <= 0) {
+      orderStatus = {
+        status: "error",
+        error: "unavailable"
+      }
+      res.send(JSON.stringify(orderStatus))
+    } else {
+      stock[order.order]--;
+      orderStatus = {
+        status: 'success'
+      } 
+      customers.push(newCustomerObject)
+      res.send(JSON.stringify(orderStatus))
+    }
   } else {
     orderStatus = {
       status: 'success'
