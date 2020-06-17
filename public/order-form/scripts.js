@@ -39,6 +39,7 @@ const updateForm = () => {
 const handleToggleErrorMessage = (errorStatus) => {};
 
 const handleSubmit = (event) => {
+  console.log("handlesubmit called");
   event.preventDefault();
   console.log(size.value);
   submitButton.disabled = true;
