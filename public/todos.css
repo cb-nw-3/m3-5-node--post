@@ -1,0 +1,64 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  background-color: gainsboro;
+}
+
+.todo__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todo__header {
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+  color: rosybrown;
+  text-align: center;
+}
+
+.todo__title {
+  margin: 0;
+  padding: 20px;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+}
+
+.todo__input {
+  height: 36px;
+  width: 400px;
+  border: none;
+  border-bottom: 1px solid gainsboro;
+}
+
+.todo__button {
+  width: 100px;
+  background-color: rosybrown;
+  color: #fff;
+  border: none;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.list-of-items__wrapper {
+  width: 404px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 5px;
+}
+
+.item {
+  padding: 10px 10px 10px 20px;
+  font-style: italic;
+  background-color: #fff;
+  border-bottom: 1px solid gainsboro;
+}
