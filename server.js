@@ -6,6 +6,8 @@ let orderStatus = {};
 
 let order;
 
+let newCustomerObject = {};
+
 const { stock, customers } = require('./data/promo.js');
 
 const express = require('express');
@@ -38,8 +40,22 @@ const handleOrder = (req, res) => {
       newCustomer = false;
     } else if (element.country !== 'Canada' && element.country !== 'canada') {
       validAddress = false;
+    } else if (order.order === 'shirt') {
+      if (stock[order.order][order.size] <= 0) {
+        validItem = false;
+      } else {
+        stock[order.order][order.size]--;
+      }
+      console.log(stock[order.order][order.size])
+    } else if (order.order === 'socks' || order.order === 'bottle') {
+      if (stock[order.order] <= 0) {
+        validItem = false;
+      } else {
+        stock[order.order]--;
+      }
+      console.log(stock[order.order])  
     } else {
-      let newCustomerObject =   {
+      newCustomerObject =   {
         givenName: order.givenName,
         surname: order.surname,
         email: order.email,
@@ -54,44 +70,30 @@ const handleOrder = (req, res) => {
     }
   });
 
-  // check if item is in store
-  if (order.order === 'shirt') {
-    if (stock[order.order][order.size] <= 0) {
-      validItem = false;
-    } else {
-      stock[order.order][order.size]--;
-    }
-  } else {
-    if (stock[order.order] <= 0) {
-      validItem = false;
-    } else {
-      stock[order.order]--;
-    }
-  }
-
   // data object to send depending on survey data
   if (!newCustomer) {
     orderStatus = {
       status: "error",
-      error: "Customer has already purchased an item"
+      error: "repeat-customer"
     }
     res.send(JSON.stringify(orderStatus))
   } else if (!validAddress) {
     orderStatus = {
       status: "error",
-      error: "Customer didn't supply a Canadian shipping address"
+      error: "undeliverable"
     }
     res.send(JSON.stringify(orderStatus))
   } else if (!validItem) {
     orderStatus = {
       status: "error",
-      error: "Item out of stock"
+      error: "unavailable"
     }
     res.send(JSON.stringify(orderStatus))
   } else {
     orderStatus = {
       status: 'success'
     }
+    customers.push(newCustomerObject)
     res.send(JSON.stringify(orderStatus));
   }
   res.redirect('/order-confirmed')
