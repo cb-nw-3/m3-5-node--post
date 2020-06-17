@@ -78,17 +78,14 @@ express()
 					error: "undeliverable",
 				})
 			);
+		} else if (Object.values(req.body).includes("")) {
+			res.send(
+				JSON.stringify({
+					status: "error",
+					error: "missing-data",
+				})
+			);
 		}
-		// else if (Object.values(req.body).includes('undefined')) {
-
-		// 	res.send(
-		// 		JSON.stringify({
-		// 			status: "error",
-		// 			error: 'missing-data'
-		// 		})
-		// 	)
-		// }
-		// **TODO: ^^ else if always returns since size for bottles and socks is always undefined
 
 		res.send(
 			JSON.stringify({
