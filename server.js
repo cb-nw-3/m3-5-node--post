@@ -2,7 +2,11 @@
 
 const toDoList = [];
 
-const { stock, customer } = require('./data/promo');
+let orderStatus = {};
+
+let order;
+
+const { stock, customers } = require('./data/promo.js');
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -22,7 +26,79 @@ const handleDataToDoList = (req, res) => {
 }
 
 const handleOrder = (req, res) => {
+  let newCustomer = true;
+  let validItem = true;
+  let validAddress = true;
 
+  order = req.body;
+
+  // check if new customer
+  customers.forEach(element => {
+    if (element.givenName === order.givenName) {
+      newCustomer = false;
+    } else if (element.country !== 'Canada' && element.country !== 'canada') {
+      validAddress = false;
+    } else {
+      let newCustomerObject =   {
+        givenName: order.givenName,
+        surname: order.surname,
+        email: order.email,
+        address: order.address,
+        city: order.city,
+        province: order.province,
+        postcode: order.postcode,
+        country: order.country,
+      }
+
+      customers.push(newCustomerObject);
+    }
+  });
+
+  // check if item is in store
+  if (order.order === 'shirt') {
+    if (stock[order.order][order.size] <= 0) {
+      validItem = false;
+    } else {
+      stock[order.order][order.size]--;
+    }
+  } else {
+    if (stock[order.order] <= 0) {
+      validItem = false;
+    } else {
+      stock[order.order]--;
+    }
+  }
+
+  // data object to send depending on survey data
+  if (!newCustomer) {
+    orderStatus = {
+      status: "error",
+      error: "Customer has already purchased an item"
+    }
+    res.send(JSON.stringify(orderStatus))
+  } else if (!validAddress) {
+    orderStatus = {
+      status: "error",
+      error: "Customer didn't supply a Canadian shipping address"
+    }
+    res.send(JSON.stringify(orderStatus))
+  } else if (!validItem) {
+    orderStatus = {
+      status: "error",
+      error: "Item out of stock"
+    }
+    res.send(JSON.stringify(orderStatus))
+  } else {
+    orderStatus = {
+      status: 'success'
+    }
+    res.send(JSON.stringify(orderStatus));
+  }
+  res.redirect('/order-confirmed')
+}
+
+const handleOrderConfirmed = (req, res) => {
+  res.render('./pages/order-confirmed/confirmed-order', { order: order })
 }
 
 express()
@@ -44,6 +120,7 @@ express()
   .get('/todos', handleToDoList)
   .post('/data', handleDataToDoList)
 
+  .get('/order-confirmed', handleOrderConfirmed)
   .post('/order', handleOrder)
   
   .get('*', (req, res) => res.send('Dang. 404.'))
