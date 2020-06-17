@@ -70,20 +70,38 @@ const isOutOfStock = (item, size) => {
 const isDataMissing = (data) => {
   let dataIsMissing;
 
-  if (
-    data.givenName === "" ||
-    data.surname === "" ||
-    data.address === "" ||
-    data.country === "" ||
-    data.order === "" ||
-    data.size === "" ||
-    data.email === "" ||
-    data.city === "" ||
-    data.province === "" ||
-    data.postcode === ""
-  ) {
-    dataIsMissing = true;
+  if (data.order === "shirt") {
+    if (
+      data.givenName === "undefined" ||
+      data.surname === "undefined" ||
+      data.address === "undefined" ||
+      data.country === "undefined" ||
+      data.order === "undefined" ||
+      data.size === "undefined" ||
+      data.email === "undefined" ||
+      data.city === "undefined" ||
+      data.province === "undefined" ||
+      data.postcode === "undefined"
+    ) {
+      dataIsMissing = true;
+    }
+  } else {
+    if (
+      data.givenName === "undefined" ||
+      data.surname === "undefined" ||
+      data.address === "undefined" ||
+      data.country === "undefined" ||
+      data.order === "undefined" ||
+      data.email === "undefined" ||
+      data.city === "undefined" ||
+      data.province === "undefined" ||
+      data.postcode === "undefined"
+    ) {
+      dataIsMissing = true;
+    }
   }
+
+  return dataIsMissing;
 };
 
 express()
