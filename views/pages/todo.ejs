@@ -1,0 +1,19 @@
+<form method='POST' action='/data'>
+    <label for='item'>TODO Item</label>    
+    <input type='text' name='item' placeholder='Item Description' />
+    <input type="radio" id="urgent" name="urgent" value="urgent">
+    <label for="urgent">Urgent</label><br>  
+    <button type='submit'>Add Item</button>
+</form>
+
+<ul>
+
+    <% items.forEach(item => { %>
+        <li>
+            <%= item.item %>
+            <%= item.urgent %>
+
+        </li>
+    
+    <% }); %> 
+</ul>
