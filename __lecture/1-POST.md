@@ -7,7 +7,7 @@
 So far, we've seen the `.get` method:
 
 ```js
-express.get('/', (req, res) => {
+express.get("/", (req, res) => {
   // ...
 });
 ```
@@ -96,7 +96,7 @@ Identify the right method for the form
   <li>Banana</li>
 </ul>
 
-<form method="?" action="/add">
+<form method="POST" action="/add">
   <input name="item" type="text" />
   <button>Add new item</button>
 </form>
@@ -105,7 +105,7 @@ Identify the right method for the form
 ---
 
 ```html
-<form method="?" action="/login">
+<form method="POST" action="/login">
   <input name="email" type="email" />
   <input name="password" type="password" />
   <button>Log In</button>
@@ -115,7 +115,7 @@ Identify the right method for the form
 ---
 
 ```html
-<form method="?" action="/logout">
+<form method="GET" action="/logout">
   <button>Sign out</button>
 </form>
 ```
