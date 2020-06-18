@@ -65,10 +65,10 @@ const handleSubmit = (event) => {
     },
   })
     .then((res) => res.json())
-    .then((data) => {
-      const { status, error } = data;
+    .then((responseBody) => {
+      const { status, error } = responseBody;
       if (status === 'success') {
-        window.location.href = '/order-confirmed';
+        window.location.href = `/order-confirmed?givenName=${givenName.value}` + `&order=${order.value}` + `&province=${province.value}`;
       } else if (error) {
         submitButton.disabled = false;
         errorMsg.style.display = 'flex';

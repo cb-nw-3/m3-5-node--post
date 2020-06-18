@@ -22,7 +22,7 @@ const todoData = (req, res) => {
 }
 
 //Exercise 2
-const { handleOrder } = require("./handlers");
+const { handleOrder, formData } = require("./handlers");
 
 express()
     .use(function (req, res, next) {
@@ -45,6 +45,13 @@ express()
     .post("/data", todoData)
 
     //Exercise 2
+    .get("/order-confirmed", (req, res) => {
+        const givenName = req.query.givenName;
+        const order = req.query.order;
+        const province = req.query.province;
+
+        res.render("./pages/order-confirmed", { givenName, order, province })
+    })
     .post("/order", handleOrder)
 
     .get("*", (req, res) => res.send("Dang. 404."))

@@ -2,23 +2,23 @@
 const { stock, customers } = require('./data/promo');
 
 const handleOrder = (req, res) => {
-    const form = req.body;
+    const formData = req.body;
     //missing data in the form
-    if (form.order === "undefined") {
+    if (formData.order === "undefined") {
         res.send({ status: 'error', error: 'missing-data' })
     }
     //user has already requested
-    else if (userValidation(form)) {
+    else if (userValidation(formData)) {
         res.send({ status: 'error', error: 'repeat-customer' })
     }
     //User is not in Canada
-    else if (form.country.toLowerCase() != "canada") {
+    else if (formData.country.toLowerCase() != "canada") {
         res.send({ status: 'error', error: 'undeliverable' })
     }
     //Item out of stock
-    let stockForOrder = form.order === 'shirt'
-        ? stock.shirt[form.size]
-        : stock[form.order];
+    let stockForOrder = formData.order === 'shirt'
+        ? stock.shirt[formData.size]
+        : stock[formData.order];
 
     // Object.values(stock); // ['229', '312', {}]
     // Object.values(stock.shirt); // ['12', '0',]
@@ -29,26 +29,23 @@ const handleOrder = (req, res) => {
     }
     //all conditions are true
     else {
-        res.send({ status: 'success' });
-        res.redirect('./order-confirmed');
+        res.send({ status: 'success' })
     }
 }
 
-function userValidation(form) {
+function userValidation(formData) {
     // [undefined, true]
     // [undefined, undefined]
     return customers.some(function (customer) {
         if (
-            customer.givenName.toLowerCase() === form.givenName.toLowerCase() &&
-            customer.surname.toLowerCase() === form.surname.toLowerCase() &&
-            customer.address.toLowerCase() === form.address.toLowerCase() &&
-            customer.province.toLowerCase() === form.province.toLowerCase() &&
-            customer.city.toLowerCase() === form.city.toLowerCase() &&
-            customer.postcode.toLowerCase() === form.postcode.toLowerCase()
+            customer.givenName.toLowerCase() === formData.givenName.toLowerCase() &&
+            customer.surname.toLowerCase() === formData.surname.toLowerCase() &&
+            customer.address.toLowerCase() === formData.address.toLowerCase() &&
+            customer.province.toLowerCase() === formData.province.toLowerCase() &&
+            customer.city.toLowerCase() === formData.city.toLowerCase() &&
+            customer.postcode.toLowerCase() === formData.postcode.toLowerCase()
         ) {
-            console.log(customer, form)
             return true;
-
         }
     });
 }
