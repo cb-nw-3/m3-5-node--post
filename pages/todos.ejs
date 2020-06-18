@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<head>
+  <title>To Do List</title>
+</head>
+<body>
+  <% itemList.forEach(item => { %>
+  <p><%= item %></p>
+  <% }); %>
+
+  <form method="POST" action="/data">
+    <input type="text" name="data" placeholder="Enter data" />
+    <button type="submit">Submit</button>
+  </form>
+</body>
