@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins|Rubik&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Poppins|Rubik&display=swap");
 
 /* CSS RESET */
 html,
@@ -12,7 +12,7 @@ p {
 }
 
 body {
-  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-width: 320px;
@@ -31,10 +31,11 @@ body {
 }
 .order-image {
   background: url(./assets/question.jpg) no-repeat center;
-  background-size: cover;
+  background-size: contain;
   height: 190px;
   width: 100%;
   overflow: hidden;
+  margin: 40px auto;
 }
 
 form {
@@ -47,12 +48,12 @@ form {
 }
 h1 {
   color: #b1bbc7;
-  font-family: 'Rubik', Arial, Helvetica, sans-serif;
+  font-family: "Rubik", Arial, Helvetica, sans-serif;
   font-size: 16px;
 }
 h2 {
   color: #373352;
-  font-family: 'Rubik', Arial, Helvetica, sans-serif;
+  font-family: "Rubik", Arial, Helvetica, sans-serif;
   font-size: 24px;
   margin: 16px 0 20px;
 }
@@ -114,7 +115,7 @@ h2 {
   margin-right: 10px;
 }
 .form-item.sizing select {
-  font-family: 'Rubik', Arial, Helvetica, sans-serif;
+  font-family: "Rubik", Arial, Helvetica, sans-serif;
   width: 120px;
   height: 32px;
 }
@@ -123,7 +124,7 @@ h2 {
   display: flex;
   align-items: center;
   border-radius: 4px;
-  font-family: 'Rubik', Arial, Helvetica, sans-serif;
+  font-family: "Rubik", Arial, Helvetica, sans-serif;
   font-size: 16px;
   padding: 0 0 0 12px;
   width: calc(100% - 52px);
@@ -164,7 +165,7 @@ h2 {
   color: #fff;
   cursor: pointer;
   display: block;
-  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-size: 16px;
   font-weight: 600;
   margin: 16px auto;
@@ -220,12 +221,16 @@ h2 {
 
 .error-message {
   display: none;
+  position: relative;
+  top: -500px;
   margin: 0 auto;
-  border: 1px solid red;
+  border: 4px solid red;
+  background-color: white;
   height: 75px;
   width: 80%;
   justify-content: center;
   align-items: center;
   color: red;
   font-size: 14px;
+  text-align: center;
 }

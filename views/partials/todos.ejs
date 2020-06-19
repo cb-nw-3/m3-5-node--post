@@ -1,0 +1,16 @@
+<div class="inbox">
+  <form method="POST" action="/data" id="listElement">
+    <input type="text" name="item" placeholder="Item Description" required />
+    <button type="submit">Submit</button>
+    <button id="delete" type="button">Delete</button>
+  </form>
+  <% itemsList.forEach(item => {%>
+  <div class="item">
+    <input type="checkbox" <%if (item.checked) {%>
+      <%="checked"%>
+      <%}%>/>
+    <p><%=item.text%></p>
+  </div>
+  <%})%>
+</div>
+<script src="js/todoScripts.js"></script>

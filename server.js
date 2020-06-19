@@ -1,8 +1,14 @@
 'use strict';
 
 const express = require('express');
-const bodyParser = require('body-parser');
+// const bodyParser = require("body-parser");
 const morgan = require('morgan');
+const {
+  handleToDos,
+  handleData,
+  handleOrder,
+  handleUpdate,
+} = require('./handlers');
 
 const PORT = process.env.PORT || 8000;
 
@@ -17,11 +23,16 @@ express()
   })
   .use(morgan('tiny'))
   .use(express.static('public'))
-  .use(bodyParser.json())
+  .use(express.json())
+  // .use(bodyParser.json())
   .use(express.urlencoded({ extended: false }))
   .set('view engine', 'ejs')
 
   // endpoints
 
+  .get('/todos', handleToDos)
+  .post('/data', handleData)
+  .post('/check', handleUpdate)
+  .post('/order', handleOrder)
   .get('*', (req, res) => res.send('Dang. 404.'))
   .listen(PORT, () => console.log(`Listening on port ${PORT}`));
