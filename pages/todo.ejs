@@ -1,0 +1,12 @@
+<%- include("../partials/header.ejs")%>
+<form method="POST" action="/addItem">
+  <label for="item">Enter Item</label>
+  <input type="text" id="item" name="item" />
+  <button type="submit">Submit</button>
+</form>
+<ul>
+  <% item.forEach((item)=>{ %>
+  <li><%=item %></li>
+  <% }) %>
+</ul>
+<%- include("../partials/footer.ejs") %>
