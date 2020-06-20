@@ -3,7 +3,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
-const { handleHomePage, handle404, handleFormData } = require("./functions");
+const {
+  handleHomePage,
+  handle404,
+  handleFormData,
+  orderValidation,
+} = require("./functions");
 
 const PORT = process.env.PORT || 8000;
 
@@ -22,9 +27,12 @@ express()
   .use(express.urlencoded({ extended: false }))
   .set("view engine", "ejs")
 
-  // endpoints
+  // endpoints for exercise 1
   .get("/todos", handleHomePage)
   .post("/data", handleFormData)
+
+  //endpoints for exercise 2
+  .post("/order", orderValidation)
 
   // handle 404s
   .use(handle404)
