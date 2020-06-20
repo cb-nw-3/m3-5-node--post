@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <form method="POST" action="/data">
+      <label for="item">TODO Item</label>
+      <input type="text" name="item" placeholder="Item Description" />
+      <button type="submit">Submit</button>
+    </form>
+    <h3>List</h3>
+    <ul>
+      <% list.forEach(item => { %>
+      <li><%- item %></li>
+      <% }) %>
+    </ul>
+  </body>
+</html>
