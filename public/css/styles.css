@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+  background-color: pink;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+h1 {
+  color: navy;
+  text-align: center;
+}
+
+li {
+  list-style-type: "-";
+  padding: 10px;
+}
+
+button {
+  padding: 10px;
+  background-color: mediumvioletred;
+  color: white;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+.content {
+  color: black;
+  display: flex;
+  justify-content: center;
+}
+
+.to-do-list-div {
+  box-shadow: 5px 10px #888888;
+  border-radius: 10px;
+  color: darkblue;
+  margin: auto;
+  background-color: whitesmoke;
+  width: 40%;
+  height: 50%;
+}
+.to-do-list {
+  padding: 20px;
+}
+
+.form-data {
+  color: darkblue;
+}

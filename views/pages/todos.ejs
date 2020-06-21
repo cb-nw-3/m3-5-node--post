@@ -1,0 +1,12 @@
+<%- include('../partials/header') %>
+<div class="content">
+  <%- include('../partials/todolist') %>
+</div>
+<div class="to-do-list-div">
+  <ul class="to-do-list">
+    <% items.forEach(item => { %>
+    <li><%= item %></li>
+    <% }); %>
+  </ul>
+</div>
+<%- include('../partials/footer') %>
