@@ -1,0 +1,18 @@
+<%- include ('../partials/header') %>
+
+<div class="item-input">
+    <%- include ('../partials/todoForm') %>
+</div>
+<div class='todo-section'>
+    <ul class='list'>
+        <% items.forEach(item => { %>
+        <li class='list-item'>
+            <!-- <button type='submit'>Done</button> -->
+            <%= item %>
+            <!-- <button type='submit'>Delete</button> -->
+        </li>
+        <% }); %>
+    </ul>
+</div>
+
+<%- include ('../partials/footer') %>

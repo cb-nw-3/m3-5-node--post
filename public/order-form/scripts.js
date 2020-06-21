@@ -1,6 +1,6 @@
 const orderItems = {
   undefined: { label: 'Pick an item', imgUrl: './assets/question.jpg' },
-  bottle: { label: 'Bottle', imgUrl: './assets/bottle.png' },
+  bottles: { label: 'Bottles', imgUrl: './assets/bottle.png' },
   shirt: { label: 'T-shirt', imgUrl: './assets/tshirt.png' },
   socks: { label: 'Socks', imgUrl: './assets/socks.jpg' },
 };
@@ -36,7 +36,7 @@ const updateForm = () => {
   ).style.backgroundImage = `url(${orderItems[sel].imgUrl}`;
 };
 
-const handleToggleErrorMessage = (errorStatus) => {};
+const handleToggleErrorMessage = (errorStatus) => { };
 
 const handleSubmit = (event) => {
   event.preventDefault();
@@ -65,10 +65,10 @@ const handleSubmit = (event) => {
     },
   })
     .then((res) => res.json())
-    .then((data) => {
-      const { status, error } = data;
+    .then((responseBody) => {
+      const { status, error } = responseBody;
       if (status === 'success') {
-        window.location.href = '/order-confirmed';
+        window.location.href = `/order-confirmed?givenName=${givenName.value}` + `&order=${order.value}` + `&province=${province.value}`;
       } else if (error) {
         submitButton.disabled = false;
         errorMsg.style.display = 'flex';
