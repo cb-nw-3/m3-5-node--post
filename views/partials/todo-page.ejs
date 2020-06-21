@@ -1,0 +1,29 @@
+<div class="task-entry">
+  <form method="POST" action="/addItem" class="input-form">
+    <input type="checkbox" name="itemCheck" value="Bike" />
+    <input
+      type="text"
+      name="itemName"
+      class="input-item"
+      placeholder="What do you need to do..."
+    />
+    <input type="submit" value="Submit" class="input-submit" />
+  </form>
+</div>
+<div class="task-list">
+  <h3>
+    <%- taskBanner %>
+  </h3>
+  <div class="task-banners">
+    <p>Done</p>
+    <p>To Complete</p>
+  </div>
+  <% itemList.forEach(function(item) { %>
+  <div class="task-item-entered">
+    <form method="POST" action="/deleteItem">
+      <button id="<%- item.item %>;" type="submit">Done</button>
+    </form>
+    <p><%- item.item %></p>
+  </div>
+  <% }) %>
+</div>
