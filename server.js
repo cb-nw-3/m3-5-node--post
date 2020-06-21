@@ -33,7 +33,9 @@ express()
 
   //endpoints for exercise 2
   .post("/order", orderValidation)
-
+  .get("/order-confirmed", (req, res) => {
+    res.render("pages/order-confirmation");
+  })
   // handle 404s
   .use(handle404)
 

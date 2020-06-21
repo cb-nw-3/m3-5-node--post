@@ -88,6 +88,10 @@ function orderValidation(req, res) {
       status: "error",
       error: "missing-data",
     });
+  } else {
+    res.json({
+      status: "success",
+    });
   }
 }
 
