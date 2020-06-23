@@ -1,0 +1,132 @@
+body {
+  background: lightgrey;
+  font-family: 'arial', cursive;
+}
+
+.frame {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  width: 400px;
+  height: 600px;
+  margin-top: -200px;
+  margin-left: -200px;
+  border-radius: 2px;
+  box-shadow: .5rem .5rem 1rem rgba(0, 0, 0, 0.7);
+  color: #497081;
+  font-size: .9rem;
+  background: WHITE;
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list .head {
+  padding: 20px 0;
+  margin: 0 30px;
+  border-bottom: 1px solid rgba(100, 58, 122, .5);
+}
+
+.list .title {
+  font-weight: 500;
+  text-align: center;
+  font-size: 2.5rem;
+  color: rgba(100, 58, 122, .8);
+}
+
+.list .subtitle {
+  font-size: .9rem;
+  text-align: center;
+  letter-spacing: .5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.list ul {
+  list-style: none;
+  padding: 4px 0;
+  margin: 0 30px;
+  font-weight: 300;
+}
+
+.list ul li {
+  position: relative;
+  display: block;
+  margin: 24px 0;
+  height: 14px;
+}
+
+.list ul .text {
+  float: left;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button {
+  background: rgba(100, 58, 122, .8);
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+}
+
+.order-confirmation--container {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 0;
+  max-width: 78em;
+  min-width: 20em;
+  min-height: 50em;
+  padding-top: 20px;
+  padding-left: 24px;
+  padding-right: 24px;
+  background-color: white;
+}
+
+.order-confirmation--detail {
+  padding-top: 10px;
+}
+
+.horizontal-rule {
+  border: 0;
+  border-bottom: 1px solid #dadada;
+}
+
+.row {
+  display: inline-block;
+  min-width: 33%;
+  padding-bottom: 1em;
+}
+
+h4 {
+  text-transform: uppercase;
+}
+
+.order-confirmation--detail h4, p {
+  margin: 0;
+}
+
+.order-confirmation--detail p {
+  line-height: 2em;
+}
+
+.image-container {
+  text-align: center;
+}
+
+.product-image {
+  margin: 0;
+  max-width: 400px; 
+  max-height: 400px;
+}
+
+footer {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 0;
+  max-width: 78em;
+}

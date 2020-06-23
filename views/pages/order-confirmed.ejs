@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+    <div class="order-confirmation--container">
+        <h1>Thank you for your order!</h1>
+        <hr class="horizontal-rule">
+        <div class="order-confirmation--detail">
+            <div id="order-date" class="row"> 
+                <h4>Order date</h4>
+                <p><%= new Date().toDateString()%></p>
+            </div>
+            <div id="item-order" class="row">
+                <h4>Item ordered</h4>
+                <p><%= customerData.size + ' ' + customerData.order %></p>
+            </div>
+            <div id="email" class="row">
+                <h4>Email</h4>
+                <p><%= customerData.email %></p>
+            </div>
+            <div id="fullname" class="row">
+                <h4>Name</h4>
+                <p><%= customerData.givenName + ' ' + customerData.surname %></p>
+            </div>
+            <div id="shipping-info" class="row">
+                <h4>Item send to</h4>
+                <p><%= customerData.address + ', ' + customerData.city + ' ' + customerData.province + ', ' + customerData.country %></p>
+            </div>
+        </div>
+        <hr class="horizontal-rule">
+        <div class="image-container">
+            <div id="image"></div>
+        </div>
+        
+    </div>
+    <footer>
+        <p>© 2020 Concordia Bootcamp. All rights reserved</p>
+    </footer>
+    <script type="text/javascript" src="/js/display-order-image.js"></script>
+</body>
+</html>

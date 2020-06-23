@@ -222,10 +222,11 @@ h2 {
   display: none;
   margin: 0 auto;
   border: 1px solid red;
-  height: 75px;
+  height: 50px;
   width: 80%;
   justify-content: center;
   align-items: center;
   color: red;
   font-size: 14px;
+  padding: 5px;
 }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="frame">
+        <div class="list">
+            <div class="head">
+                <div class="title">TODO List</div>
+                <div class="subtitle"><%= new Date().toDateString()%></div>
+                <div class='input-container'>
+                <form method='POST' action='/data'>
+                    <label for='item'>Add items</label>
+                    <!-- todo: block space char index 0 -->
+                    <input type='text' required minlength="2" maxlength="50" name='item' placeholder='Description' />
+                    <button type='submit'>Submit</button>
+                </form>
+            </div>
+        </div>
+        <ul>
+            <% items.forEach(item => { %>
+            <li>
+                <input type="checkbox" name="" value="">
+                <label for="checkbox" class="text word_wrap"><%= item %></label>
+                <label for="checkbox" class="button"></label>
+            </li>
+            <% }); %>
+        </ul>
+    </div>
+</body>
+</html>
