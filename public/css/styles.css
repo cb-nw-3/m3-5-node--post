@@ -71,3 +71,62 @@ button {
   color: white;
   font-weight: bold;
 }
+
+.order-confirmation--container {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 0;
+  max-width: 78em;
+  min-width: 20em;
+  min-height: 50em;
+  padding-top: 20px;
+  padding-left: 24px;
+  padding-right: 24px;
+  background-color: white;
+}
+
+.order-confirmation--detail {
+  padding-top: 10px;
+}
+
+.horizontal-rule {
+  border: 0;
+  border-bottom: 1px solid #dadada;
+}
+
+.row {
+  display: inline-block;
+  min-width: 33%;
+  padding-bottom: 1em;
+}
+
+h4 {
+  text-transform: uppercase;
+}
+
+.order-confirmation--detail h4, p {
+  margin: 0;
+}
+
+.order-confirmation--detail p {
+  line-height: 2em;
+}
+
+.image-container {
+  text-align: center;
+}
+
+.product-image {
+  margin: 0;
+  max-width: 400px; 
+  max-height: 400px;
+}
+
+footer {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 0;
+  max-width: 78em;
+}
