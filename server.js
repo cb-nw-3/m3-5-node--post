@@ -10,13 +10,12 @@ const PORT = process.env.PORT || 8000;
 
 // Handlers
 const handleToDoPage = (req,res) => {
-  res.render('../todo-pages/todos')
+  res.render('../todo-pages/todos', {taskList: taskList});
 }
 
 const handleTask = (req,res) => {
   const {task} = req.body;
   taskList.push(task);
-  console.log(taskList);
   res.redirect('/todos');
 }
 

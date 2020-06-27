@@ -3,3 +3,9 @@
     <input name="task" type="text">
     <button type="submit">Submit</button>
 </form>
+
+<ol>
+    <% taskList.forEach(task => { %>
+        <li><%=task %></li>
+    <% }); %>
+</ol>
