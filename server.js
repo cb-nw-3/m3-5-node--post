@@ -6,6 +6,11 @@ const morgan = require('morgan');
 
 const PORT = process.env.PORT || 8000;
 
+// Handlers
+const handleToDoPage = (req,res) => {
+  res.render('../todo-pages/todos');
+}
+
 express()
   .use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -22,6 +27,7 @@ express()
   .set('view engine', 'ejs')
 
   // endpoints
+  .get('/todos', handleToDoPage)
 
   .get('*', (req, res) => res.send('Dang. 404.'))
   .listen(PORT, () => console.log(`Listening on port ${PORT}`));
