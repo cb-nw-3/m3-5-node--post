@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const { stock, customers } = require('./data/promo');
 
-//Couple of functions for the validation
+//A few of functions for the validations
 function sameName (order){
   let repeat = false;
   const sur = order.surname;
@@ -31,6 +31,61 @@ function sameStreet(order){
   return repeat;
 }
 
+function outOfStock(order){
+  console.log(parseInt(stock.shirt.medium));
+  let outOfStock = false;
+  switch(order.order) {
+    case 'socks':
+      if(parseInt(stock.socks) === 0){
+        outOfStock = true;
+      };
+      break;
+    case 'bottle':
+      if(parseInt(stock.bottles) === 0){
+        outOfStock = true;
+      };
+      break;
+    case 'shirt':
+      //Sizes
+      if(order.size === 'small'){
+        if(parseInt(stock.shirt.small) === 0){
+          outOfStock = true;
+        }
+      } else if(order.size === 'medium'){
+        if(parseInt(stock.shirt.medium) === 0){
+          outOfStock = true;
+        }
+      } else if(order.size === 'large'){
+        if(parseInt(stock.shirt.large) === 0){
+          outOfStock = true;
+        }
+      } else if(order.size === 'xlarge'){
+        if(parseInt(stock.shirt.xlarge) === 0){
+          outOfStock = true;
+        }
+      }
+      break;
+  }
+  return outOfStock;
+}
+
+function emptyField(order){
+  let empty = false;
+  if (order.order === 'undefined' ||
+    (order.order === 'shirt' && order.size === 'undefined')
+    ) { empty = true;
+  } else if (order.givenName === '' ||
+  order.surname === '' ||
+  order.address === '' ||
+  order.city === '' ||
+  order.province === '' ||
+  order.postcode === '' ||
+  order.country === ''
+  ){ empty = true;
+  }
+  return empty;
+}
+
 const PORT = process.env.PORT || 8000;
 
 // Handlers
@@ -52,7 +107,6 @@ const handleOrderConfirmed = (req, res) => {
 const handleOrder = (req, res) => {
   const order = req.body;
   let orderInfo = {};
-
   if(sameName(order)){ //Repeat customer-name
     orderInfo.status = 'error';
     orderInfo.error = 'repeat-customer';
@@ -62,6 +116,12 @@ const handleOrder = (req, res) => {
   } else if (order.country.toLowerCase() !== 'canada'){ //CANADA?
     orderInfo.status = 'error';
     orderInfo.error = 'undeliverable';
+  } else if (emptyField(order)){ //Missing info?
+    orderInfo.status = 'error';
+    orderInfo.error = 'missing-data';
+  } else if (outOfStock(order)){  
+    orderInfo.status = 'error';
+    orderInfo.error = 'unavailable';
   } else {
     orderInfo.status = 'success';
   }
