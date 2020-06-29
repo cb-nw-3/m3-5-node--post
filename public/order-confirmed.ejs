@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Order confirmed</title>
+        <link rel="stylesheet" href="./order-form/styles.css">
+    </head>
+    <body>
+        <div class='container'>
+            <div class="order-container">
+                <h2><%- `Thank you ${order.givenName} for ordering!!!` %></h2>
+                <%- `We will ship a ${order.order} at ${order.address}` %>
+            </div>
+            <div class="img-container">
+                <img src="./order-form/assets/Mr_poopy_butthole.png" alt="Mr. poopy butthole">
+            </div>
+        </div>
+    </body>
+</html>

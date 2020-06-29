@@ -1,7 +1,7 @@
 'use strict';
 
 const taskList = [];
-
+let completedOrder = {};
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
@@ -99,11 +99,6 @@ const handleTask = (req,res) => {
   res.redirect('/todos');
 }
 
-const handleOrderConfirmed = (req, res) => {
-  //res.render not working with plain html??? Need to google this...
-  res.sendfile('public/order-confirmed.html');
-}
-
 const handleOrder = (req, res) => {
   const order = req.body;
   let orderInfo = {};
@@ -125,7 +120,12 @@ const handleOrder = (req, res) => {
   } else {
     orderInfo.status = 'success';
   }
+  completedOrder = order;
   res.json(orderInfo);
+}
+
+const handleOrderConfirmed = (req, res) => {
+  res.render('../public/order-confirmed', {order: completedOrder});
 }
 
 express()
